@@ -6,15 +6,20 @@ const result = document.getElementById('result');
 const timeInputDigits = document.getElementById('time-input-digits');
 const timeInputWords = document.getElementById('time-input-words');
 
-function renderResult(text, timeWordsStr, timeDigitsStr) {
+function addMessage(text, timeWordsStr, timeDigitsStr) {
     const li = createResultElement(text, timeWordsStr, timeDigitsStr);
-    result.append(li);
+    setMessages(li);
+    renderResult();
 }
 const createResultElement = (text, timeWordsStr, timeDigitsStr) => {
     const li = document.createElement('li');
     li.append(text, createSpan(formatTime(timeWordsStr, timeDigitsStr)));
     return li;
 }
+function renderResult() {
+    result.innerHTML = getMessages().reverse().join('\n');
+}
+
 function formatTime(timeWordsStr, timeDigitsStr) {
     return (timeWordsStr ? timeWordsStr + ' or ' : '') + timeDigitsStr;
 }
@@ -35,6 +40,23 @@ const copy = async message => {
     }
 }
 const addBoldMarkdown = (timeWordStr, timeDigitsStr) => `${constantText}*${formatTime(timeWordStr, timeDigitsStr)}*`;
+const setMessages = messageEl => {
+    const messages = getMessages();
+    messages.push(messageEl.outerHTML);
+    localStorage.setItem('messages', JSON.stringify(messages));
+}
+function getMessages() {
+    const raw = localStorage.getItem('messages');
+    if (!raw) return [];
+    let messages;
+    try {
+        messages = JSON.parse(raw);
+    } catch (error) {
+        return [];
+    }
+    if (!Array.isArray(messages)) return [];
+    return messages;
+}
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -42,11 +64,10 @@ form.addEventListener('submit', (e) => {
     timeInputDigits.blur();
     const timeWordStr = timeInputWords.value;
     const timeDigitsStr = timeInputDigits.value;
-    renderResult(constantText, timeWordStr, timeDigitsStr);
+    addMessage(constantText, timeWordStr, timeDigitsStr);
     copy(addBoldMarkdown(timeWordStr, timeDigitsStr));
 });
 
-// const save = message = {}
 // const distinctHistory = () => {}
 // const deleteFromHistory = () => {}
 // const chooseFromHistory = () => { }
