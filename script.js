@@ -8,6 +8,7 @@ const timeInputWords = document.getElementById('time-input-words');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    validateEmptiness(timeInputDigits.value);
     renderResult(constantText, timeInputWords.value, timeInputDigits.value);
 });
 
@@ -30,10 +31,11 @@ function createSpan(time) {
     span.textContent = time;
     return span;
 }
-const validate = time => { }
+const validateEmptiness = input => {
+    if (!input) alert('Empty');
+}
+// const copy = message => {}
+// const save = message = {}
 // const distinctHistory = () => {}
 // const deleteFromHistory = () => {}
 // const chooseFromHistory = () => { }
-// const save = message = {}
-// const copy = message => {}
-// const history = message => { }

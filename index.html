@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type if Not Leaving</title>
+    <link rel="stylesheet" href="../../dark-theme.css">
+    <style>
+        body {
+            font-family: monospace;
+        }
+
+        span {
+            outline: 1px solid rgb(127, 127, 255);
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Type if Not Leaving</h1>
+    </header>
+    <main>
+        <form id="form">
+            <label for="time-input-digits">Time by digits</label>
+            <input type="time" id="time-input-digits">
+            <label for="time-input-words">Time by word</label>
+            <input type="text" id="time-input-words">
+            <!-- <label for="">Place</label>
+            <label for="">Route</label> -->
+            <button type="submit">Type</button>
+        </form>
+        <ol id="result"></ol>
+    </main>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
