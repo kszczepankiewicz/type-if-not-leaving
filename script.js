@@ -21,7 +21,7 @@ function renderResult(text, timeWordsStr, timeDigitsStr) {
 }
 const createResultElement = (text, timeDigitsStr, timeWordsStr) => {
     const li = document.createElement('li');
-    li.append(text, createSpan(timeWordsStr ? timeWordsStr + ' or ' : ''), createSpan(timeDigitsStr));
+    li.append(text, createSpan((timeWordsStr ? timeWordsStr + ' or ' : '') + timeDigitsStr));
     return li;
 }
 function createSpan(time) {
