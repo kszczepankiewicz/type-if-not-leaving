@@ -6,13 +6,6 @@ const result = document.getElementById('result');
 const timeInputDigits = document.getElementById('time-input-digits');
 const timeInputWords = document.getElementById('time-input-words');
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    validateEmptiness(timeInputDigits.value);
-    timeInputDigits.blur();
-    copy(renderResult(constantText, timeInputWords.value, timeInputDigits.value));
-});
-
 function renderResult(text, timeWordsStr, timeDigitsStr) {
     const li = createResultElement(text, timeWordsStr, timeDigitsStr);
     result.append(li);
@@ -31,6 +24,7 @@ function createSpan(time) {
 }
 const validateEmptiness = input => {
     if (!input) alert('Empty');
+    return input
 }
 const copy = async message => {
     try {
@@ -39,6 +33,14 @@ const copy = async message => {
         alert('Not copied')
     }
 }
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!validateEmptiness(timeInputDigits.value)) return;
+    timeInputDigits.blur();
+    copy(renderResult(constantText, timeInputWords.value, timeInputDigits.value));
+});
+
 // const createMessage = (text, timeInputWordsStr, timeInputDigitsStr) => { }
 // const save = message = {}
 // const distinctHistory = () => {}
