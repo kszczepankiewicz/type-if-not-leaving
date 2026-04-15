@@ -14,19 +14,18 @@ form.addEventListener('submit', (e) => {
 });
 
 function renderResult(text, timeWordsStr, timeDigitsStr) {
-    const li = createResultElement(text, timeDigitsStr, timeWordsStr);
+    const li = createResultElement(text, timeWordsStr, timeDigitsStr);
     result.append(li);
-    timeInputWords.value = '';
+    timeInputWords.value = '';  //fix when not present
     return li.textContent;
 }
-const createResultElement = (text, timeDigitsStr, timeWordsStr) => {
+const createResultElement = (text, timeWordsStr, timeDigitsStr) => {
     const li = document.createElement('li');
     li.append(text, createSpan((timeWordsStr ? timeWordsStr + ' or ' : '') + timeDigitsStr));
     return li;
 }
 function createSpan(time) {
     const span = document.createElement('span');
-
     span.textContent = time;
     return span;
 }
@@ -40,6 +39,7 @@ const copy = async message => {
         alert('Not copied')
     }
 }
+// const createMessage = (text, timeInputWordsStr, timeInputDigitsStr) => { }
 // const save = message = {}
 // const distinctHistory = () => {}
 // const deleteFromHistory = () => {}
