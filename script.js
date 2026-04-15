@@ -27,13 +27,13 @@ function createSpan(text) {
 }
 const validateEmptiness = input => {
     if (!input) alert('Empty');
-    return input
+    return input;
 }
 const copy = async message => {
     try {
         await navigator.clipboard.writeText(message);
     } catch (error) {
-        alert('Not copied')
+        alert('Not copied');
     }
 }
 const addBoldMarkdown = (timeWordStr, timeDigitsStr) => `${constantText}*${formatTime(timeWordStr, timeDigitsStr)}*`;
@@ -76,6 +76,6 @@ clearLocalStorageBtn.addEventListener('click', (e) => {
     setMessages();
 })
 
+// const copyFromHistory = () => { }
 // const distinctHistory = () => {}
 // const deleteFromHistory = () => {}
-// const chooseFromHistory = () => { }
