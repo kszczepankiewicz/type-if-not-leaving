@@ -19,7 +19,7 @@ const createResultElement = (text, timeWordsStr, timeDigitsStr) => {
     return li;
 }
 const renderResult = () => result.innerHTML = getMessages().reverse().join('\n');
-const formatTime = (timeWordsStr, timeDigitsStr) => (timeWordsStr ? timeWordsStr + ' or ' : '') + timeDigitsStr;
+const formatTime = (timeWordsStr, timeDigitsStr) => (timeWordsStr ? timeWordsStr.toLowerCase() + ' or ' : '') + timeDigitsStr;
 function createSpan(text) {
     const span = document.createElement('span');
     span.textContent = text;
