@@ -59,6 +59,8 @@ function getMessages() {
     return messages;
 }
 
+renderResult();
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validateEmptiness(timeInputDigits.value)) return;
