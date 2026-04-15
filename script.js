@@ -21,11 +21,12 @@ function renderResult(text, timeWordsStr, timeDigitsStr) {
 }
 const createResultElement = (text, timeDigitsStr, timeWordsStr) => {
     const li = document.createElement('li');
-    li.append(text, createSpan(timeDigitsStr), ' ', createSpan(timeWordsStr));
+    li.append(text, createSpan(timeWordsStr ? timeWordsStr + ' or ' : ''), createSpan(timeDigitsStr));
     return li;
 }
 function createSpan(time) {
     const span = document.createElement('span');
+
     span.textContent = time;
     return span;
 }
