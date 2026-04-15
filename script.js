@@ -13,8 +13,7 @@ timeForm.addEventListener('submit', (e) => {
 
 function renderResult(text, time, timeDigits) {
     const li = document.createElement('li');
-    li.textContent = text;
-    li.append(createSpan(timeDigits), ' ', createSpan(time));
+    li.append(text, createSpan(timeDigits), ' ', createSpan(time));
     result.append(li);
     // timeInput.value = '';
 }
