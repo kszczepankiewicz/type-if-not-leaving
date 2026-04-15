@@ -9,7 +9,6 @@ const timeInputWords = document.getElementById('time-input-words');
 function renderResult(text, timeWordsStr, timeDigitsStr) {
     const li = createResultElement(text, timeWordsStr, timeDigitsStr);
     result.append(li);
-    timeInputWords.value = '';  //fix when not present
     return li.textContent;
 }
 const createResultElement = (text, timeWordsStr, timeDigitsStr) => {
