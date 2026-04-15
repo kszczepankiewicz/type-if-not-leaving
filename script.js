@@ -6,6 +6,8 @@ const result = document.getElementById('result');
 const timeInputDigits = document.getElementById('time-input-digits');
 const timeInputWords = document.getElementById('time-input-words');
 
+const clearLocalStorageBtn = document.getElementById('clear-localstorage-btn');
+
 function addMessage(text, timeWordsStr, timeDigitsStr) {
     const li = createResultElement(text, timeWordsStr, timeDigitsStr);
     setMessages(li);
@@ -41,9 +43,13 @@ const copy = async message => {
 }
 const addBoldMarkdown = (timeWordStr, timeDigitsStr) => `${constantText}*${formatTime(timeWordStr, timeDigitsStr)}*`;
 const setMessages = messageEl => {
-    const messages = getMessages();
-    messages.push(messageEl.outerHTML);
+    let messages = [];
+    if (messageEl) {
+        messages = getMessages();
+        messages.push(messageEl.outerHTML);
+    }
     localStorage.setItem('messages', JSON.stringify(messages));
+    result.innerHTML = '';
 }
 function getMessages() {
     const raw = localStorage.getItem('messages');
@@ -67,6 +73,11 @@ form.addEventListener('submit', (e) => {
     addMessage(constantText, timeWordStr, timeDigitsStr);
     copy(addBoldMarkdown(timeWordStr, timeDigitsStr));
 });
+clearLocalStorageBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!window.confirm('Are you sure to clear the history?')) return;
+    setMessages();
+})
 
 // const distinctHistory = () => {}
 // const deleteFromHistory = () => {}
