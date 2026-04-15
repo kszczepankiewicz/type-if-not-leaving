@@ -9,16 +9,18 @@ const timeInputWords = document.getElementById('time-input-words');
 function renderResult(text, timeWordsStr, timeDigitsStr) {
     const li = createResultElement(text, timeWordsStr, timeDigitsStr);
     result.append(li);
-    return li.textContent;
 }
 const createResultElement = (text, timeWordsStr, timeDigitsStr) => {
     const li = document.createElement('li');
-    li.append(text, createSpan((timeWordsStr ? timeWordsStr + ' or ' : '') + timeDigitsStr));
+    li.append(text, createSpan(formatTime(timeWordsStr, timeDigitsStr)));
     return li;
 }
-function createSpan(time) {
+function formatTime(timeWordsStr, timeDigitsStr) {
+    return (timeWordsStr ? timeWordsStr + ' or ' : '') + timeDigitsStr;
+}
+function createSpan(text) {
     const span = document.createElement('span');
-    span.textContent = time;
+    span.textContent = text;
     return span;
 }
 const validateEmptiness = input => {
@@ -32,16 +34,18 @@ const copy = async message => {
         alert('Not copied')
     }
 }
+const addBoldMarkdown = (timeWordStr, timeDigitsStr) => `${constantText}*${formatTime(timeWordStr, timeDigitsStr)}*`;
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validateEmptiness(timeInputDigits.value)) return;
     timeInputDigits.blur();
-    const message = renderResult(constantText, timeInputWords.value, timeInputDigits.value);
-    copy(message);
+    const timeWordStr = timeInputWords.value;
+    const timeDigitsStr = timeInputDigits.value;
+    renderResult(constantText, timeWordStr, timeDigitsStr);
+    copy(addBoldMarkdown(timeWordStr, timeDigitsStr));
 });
 
-// const createMessage = (text, timeInputWordsStr, timeInputDigitsStr) => { }
 // const save = message = {}
 // const distinctHistory = () => {}
 // const deleteFromHistory = () => {}
