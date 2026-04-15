@@ -38,7 +38,8 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validateEmptiness(timeInputDigits.value)) return;
     timeInputDigits.blur();
-    copy(renderResult(constantText, timeInputWords.value, timeInputDigits.value));
+    const message = renderResult(constantText, timeInputWords.value, timeInputDigits.value);
+    copy(message);
 });
 
 // const createMessage = (text, timeInputWordsStr, timeInputDigitsStr) => { }
