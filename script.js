@@ -9,14 +9,15 @@ const timeInputWords = document.getElementById('time-input-words');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     validateEmptiness(timeInputDigits.value);
-    renderResult(constantText, timeInputWords.value, timeInputDigits.value);
+    copy(renderResult(constantText, timeInputWords.value, timeInputDigits.value));
 });
 
 
 function renderResult(text, timeWords, timeDigits) {
-    debugger
-    result.append(createResultElement(text, timeDigits, timeWords));
-    // timeInput.value = '';
+    const li = createResultElement(text, timeDigits, timeWords);
+    result.append(li);
+    timeInputWords.value = '';
+    return li.textContent;
 }
 
 const createResultElement = (text, timeDigits, timeWords) => {
@@ -34,7 +35,13 @@ function createSpan(time) {
 const validateEmptiness = input => {
     if (!input) alert('Empty');
 }
-// const copy = message => {}
+const copy = async message => {
+    try {
+        await navigator.clipboard.writeText(message);
+    } catch (error) {
+        alert('Not copied')
+    }
+}
 // const save = message = {}
 // const distinctHistory = () => {}
 // const deleteFromHistory = () => {}
