@@ -13,15 +13,15 @@ form.addEventListener('submit', (e) => {
     copy(renderResult(constantText, timeInputWords.value, timeInputDigits.value));
 });
 
-function renderResult(text, timeWords, timeDigitsStr) {
-    const li = createResultElement(text, timeDigitsStr, timeWords);
+function renderResult(text, timeWordsStr, timeDigitsStr) {
+    const li = createResultElement(text, timeDigitsStr, timeWordsStr);
     result.append(li);
     timeInputWords.value = '';
     return li.textContent;
 }
-const createResultElement = (text, timeDigits, timeWords) => {
+const createResultElement = (text, timeDigitsStr, timeWordsStr) => {
     const li = document.createElement('li');
-    li.append(text, createSpan(timeDigits), ' ', createSpan(timeWords));
+    li.append(text, createSpan(timeDigitsStr), ' ', createSpan(timeWordsStr));
     return li;
 }
 function createSpan(time) {
