@@ -1,4 +1,4 @@
-const constantText = `Type shouldn't you be leaving around `;
+const constantText = `Please type shouldn't you be leaving for Korzeniowskiego st. around `;
 
 const timeInput = document.getElementById('time-input');
 const timeForm = document.getElementById('time-form');
@@ -6,15 +6,18 @@ const result = document.getElementById('result');
 
 timeForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    renderResult();
+    renderResult(constantText, timeInput.value);
 });
 
 
-function renderResult() {
+function renderResult(text, time) {
+    const span = document.createElement('span');
+    span.textContent = time;
     const li = document.createElement('li');
-    li.textContent = constantText + timeInput.value;
+    li.textContent = text;
+    li.append(span);
     result.append(li);
-    timeInput.value = '';
+    // timeInput.value = '';
 }
 
 // const deleteFromHistory = () => {}
