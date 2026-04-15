@@ -9,24 +9,21 @@ const timeInputWords = document.getElementById('time-input-words');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     validateEmptiness(timeInputDigits.value);
+    timeInputDigits.blur();
     copy(renderResult(constantText, timeInputWords.value, timeInputDigits.value));
 });
 
-
-function renderResult(text, timeWords, timeDigits) {
-    const li = createResultElement(text, timeDigits, timeWords);
+function renderResult(text, timeWords, timeDigitsStr) {
+    const li = createResultElement(text, timeDigitsStr, timeWords);
     result.append(li);
     timeInputWords.value = '';
     return li.textContent;
 }
-
 const createResultElement = (text, timeDigits, timeWords) => {
     const li = document.createElement('li');
     li.append(text, createSpan(timeDigits), ' ', createSpan(timeWords));
     return li;
 }
-
-
 function createSpan(time) {
     const span = document.createElement('span');
     span.textContent = time;
