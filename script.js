@@ -1,21 +1,27 @@
 const constantText = `Please type shouldn't you be leaving for Korzeniowskiego st. around `;
 
-const timeInput = document.getElementById('time-input');
-const timeForm = document.getElementById('time-form');
+const form = document.getElementById('form');
 const result = document.getElementById('result');
-const timeInputDigits = document.getElementById('time-input-digits');
 
-timeForm.addEventListener('submit', (e) => {
+const timeInputDigits = document.getElementById('time-input-digits');
+const timeInputWords = document.getElementById('time-input-words');
+
+form.addEventListener('submit', (e) => {
     e.preventDefault();
-    renderResult(constantText, timeInput.value, timeInputDigits.value);
+    renderResult(constantText, timeInputWords.value, timeInputDigits.value);
 });
 
 
-function renderResult(text, time, timeDigits) {
-    const li = document.createElement('li');
-    li.append(text, createSpan(timeDigits), ' ', createSpan(time));
-    result.append(li);
+function renderResult(text, timeWords, timeDigits) {
+    debugger
+    result.append(createResultElement(text, timeDigits, timeWords));
     // timeInput.value = '';
+}
+
+const createResultElement = (text, timeDigits, timeWords) => {
+    const li = document.createElement('li');
+    li.append(text, createSpan(timeDigits), ' ', createSpan(timeWords));
+    return li;
 }
 
 
@@ -24,6 +30,8 @@ function createSpan(time) {
     span.textContent = time;
     return span;
 }
+const validate = time => { }
+// const distinctHistory = () => {}
 // const deleteFromHistory = () => {}
 // const chooseFromHistory = () => { }
 // const save = message = {}
