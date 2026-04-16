@@ -25,10 +25,6 @@ function createSpan(text) {
     span.textContent = text;
     return span;
 }
-const validateEmptiness = input => {
-    if (!input) alert('Empty');
-    return input;
-}
 const copy = async message => {
     try {
         await navigator.clipboard.writeText(message);
@@ -63,11 +59,15 @@ renderResult();
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (!validateEmptiness(timeInputDigits.value)) return;
     timeInputDigits.blur();
     const timeWordStr = timeInputWords.value;
     const timeDigitsStr = timeInputDigits.value;
     addMessage(constantText, timeWordStr, timeDigitsStr);
+    if (isEmpty(timeDigitsStr)) {
+        alert('Empty time in digits');
+        return;
+    }
+    // if (isEmpty(timeDigitsStr)) alert('Empty time in words');
     copy(addBoldMarkdown(timeWordStr, timeDigitsStr));
 });
 clearLocalStorageBtn.addEventListener('click', (e) => {
@@ -75,6 +75,8 @@ clearLocalStorageBtn.addEventListener('click', (e) => {
     if (!window.confirm('Are you sure to clear the history?')) return;
     setMessages();
 })
+const isEmpty = str => str === '';
+// const isIdentical = (newEntry, entries) => newEntry === entries.at(-1);
 
 // const copyFromHistory = () => { }
 // const distinctHistory = () => {}
