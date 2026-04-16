@@ -60,15 +60,15 @@ renderResult();
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     timeInputDigits.blur();
-    const timeWordStr = timeInputWords.value;
+    const timeWordsStr = timeInputWords.value;
     const timeDigitsStr = timeInputDigits.value;
-    addMessage(constantText, timeWordStr, timeDigitsStr);
+    addMessage(constantText, timeWordsStr, timeDigitsStr);
     if (isEmpty(timeDigitsStr)) {
         alert('Empty time in digits');
         return;
     }
-    if (isEmpty(timeWordStr)) alert('Empty time in words');
-    copy(addBoldMarkdown(timeWordStr, timeDigitsStr));
+    if (isEmpty(timeWordsStr)) alert('Empty time in words');
+    copy(addBoldMarkdown(timeWordsStr, timeDigitsStr));
 });
 clearLocalStorageBtn.addEventListener('click', (e) => {
     e.preventDefault();
