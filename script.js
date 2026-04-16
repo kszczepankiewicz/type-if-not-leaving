@@ -67,7 +67,7 @@ form.addEventListener('submit', (e) => {
         alert('Empty time in digits');
         return;
     }
-    if (isEmpty(timeDigitsStr)) alert('Empty time in words');
+    if (isEmpty(timeWordStr)) alert('Empty time in words');
     copy(addBoldMarkdown(timeWordStr, timeDigitsStr));
 });
 clearLocalStorageBtn.addEventListener('click', (e) => {
