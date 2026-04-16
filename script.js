@@ -62,12 +62,12 @@ form.addEventListener('submit', (e) => {
     timeInputDigits.blur();
     const timeWordsStr = timeInputWords.value;
     const timeDigitsStr = timeInputDigits.value;
-    addMessage(constantText, timeWordsStr, timeDigitsStr);
     if (isEmpty(timeDigitsStr)) {
         alert('Empty time in digits');
         return;
     }
     if (isEmpty(timeWordsStr)) alert('Empty time in words');
+    addMessage(constantText, timeWordsStr, timeDigitsStr);
     copy(addBoldMarkdown(timeWordsStr, timeDigitsStr));
 });
 clearLocalStorageBtn.addEventListener('click', (e) => {
